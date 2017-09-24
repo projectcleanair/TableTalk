@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -30,7 +30,19 @@
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
-
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyATwzDv1p2K_NPjAcWg4sg0kIDnQb4imKI",
+    authDomain: "tabletalke-44822.firebaseapp.com",
+    databaseURL: "https://tabletalke-44822.firebaseio.com",
+    projectId: "tabletalke-44822",
+    storageBucket: "tabletalke-44822.appspot.com",
+    messagingSenderId: "502676505782"
+  };
+  firebase.initializeApp(config);
+    </script>
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
 
@@ -41,5 +53,42 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+    <!--Database Management code-->
+    <script>
+        // JavaScript source code
+        var database = firebase.database();
+        var groupRef = database.ref('groups');
+        var userRef = database.ref("Users");
+        var userId = firebase.auth().currentUser;
+        var length;
+
+        /**
+        Should write a new group to the firebase database
+        */
+        function writeGroupData(groupId, gSize, mLength, gTalkTime) {
+            firebase.database().ref('groups/' + groupId).set({
+                groupSize: gSize,
+                meetingLength: mLength,
+                goalTalkTime: gTalkTime
+            });
+            addToGroup(groupId);
+        }
+        /**
+        Should create a random group id and then call writeGroupData
+        */
+        function createGroup() {
+            var newId = groupRef.push().key;
+            writeGroupData(newId, 0, length, length);
+        }
+
+        function addToGroup(gId) {
+            database.ref("Users/" + userId).set({ groupId: gId });
+        }
+
+        function updateNumber() {
+            var x = document.getElementById("size").value;
+            length = x;
+        }
+    </script>
 </body>
 </html>

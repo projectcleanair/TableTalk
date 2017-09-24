@@ -15,6 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class CreateGroupPage {
 
   constructor(public navCtrl: NavController) {
-  }
+    }
 
+  
 }
