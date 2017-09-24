@@ -4,6 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { CreateGroupPage } from '../pages/create-group/create-group';
+import { JoinGroupPage } from '../pages/join-group/join-group';
+
 @Component({
   templateUrl: 'app.html'
 })

@@ -6,11 +6,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { CreateGroupPage } from '../pages/create-group/create-group';
+import { JoinGroupPage } from '../pages/join-group/join-group';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    CreateGroupPage,
+    JoinGroupPage
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    CreateGroupPage,
+    JoinGroupPage
   ],
   providers: [
     StatusBar,
