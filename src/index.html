@@ -79,6 +79,7 @@
         function createGroup() {
             var newId = groupRef.push().key;
             writeGroupData(newId, 0, length, length);
+            createSpeaker(newId);
         }
 
         function addToGroup(gId) {
@@ -88,6 +89,10 @@
         function updateNumber() {
             var x = document.getElementById("size").value;
             length = x;
+        }
+
+        function createSpeaker(gId) {
+            database.ref("Speaker/" + gId).set({ userId: null, groupId: gId, startTime: 0, stopTime: 0 });
         }
     </script>
 </body>
