@@ -7,8 +7,18 @@
 </ion-header>
 
 <ion-content padding>
+   
+    
+            <label color="primary" stacked>Username</label>
+            <input id="username" placeholder="Username"/>
+       
 
-<button create (click)='createGroup();'>Create Group</button>
-<button join (click)='joinGroup();'>Join Group</button>
+            <label color="primary" stacked>Name</label>
+            <input placeholder="name" id="name" ng-model="name"/>
+        
+            <button ion-button round onclick="createUser()">Submit</button>
+      
+        <button create (click)='createGroup();' ion-button full>Create Group</button>
+        <button join (click)='joinGroup();'ion-button full>Join Group</button>
 
 </ion-content>

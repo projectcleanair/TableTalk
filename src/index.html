@@ -57,16 +57,17 @@
     <script>
         // JavaScript source code
         var database = firebase.database();
-        var groupRef = database.ref('groups');
+        var groupRef = database.ref('Groups');
         var userRef = database.ref("Users");
-        var userId = firebase.auth().currentUser;
+        var userId;
         var length;
 
+        
         /**
         Should write a new group to the firebase database
         */
         function writeGroupData(groupId, gSize, mLength, gTalkTime) {
-            firebase.database().ref('groups/' + groupId).set({
+            firebase.database().ref('Groups/' + groupId).set({
                 groupSize: gSize,
                 meetingLength: mLength,
                 goalTalkTime: gTalkTime
@@ -80,10 +81,23 @@
             var newId = groupRef.push().key;
             writeGroupData(newId, 0, length, length);
             createSpeaker(newId);
+            document.getElementById("groupIdDisplay").innerHTML = newId;
         }
-
+        function join() {
+            var gid = document.getElementById("groupJoin").value;
+            addToGroup(gid);
+        }
         function addToGroup(gId) {
-            database.ref("Users/" + userId).set({ groupId: gId });
+            
+            var u = database.ref("Users/" + userId + "/groupId");
+            u.transaction(function (currentId) {
+                return gId;
+            })
+            var x = database.ref("Groups/" + gId + "/groupSize");
+            x.transaction(function (currentVal) {
+                return currentVal + 1;
+
+            })
         }
 
         function updateNumber() {
@@ -92,7 +106,20 @@
         }
 
         function createSpeaker(gId) {
-            database.ref("Speaker/" + gId).set({ userId: null, groupId: gId, startTime: 0, stopTime: 0 });
+            
+            database.ref("Speaker/" + gId).set({ userId: userId, groupId: gId, startTime: 0, stopTime: 0 });
+        }
+
+        function changeSpeaker(gId) {
+            
+            var x = database.ref("Speaker/" + gId + "/userId").set({ userId: userId, startTime: Date.now() });
+        }
+
+        function createUser() {
+            var uid = document.getElementById("username").value;
+            var name = document.getElementById("name").value;
+            userId = uid;
+            database.ref("Users/" + uid).set({ name: name });
         }
     </script>
 </body>
