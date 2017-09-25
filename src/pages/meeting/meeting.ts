@@ -14,12 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'meeting.html',
 })
 export class MeetingPage {
+	meetingColor: string = '#ffffff';
+	meetingColor2: string = '#4A2BAD';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	colors: Array<string> = ['#4A2BAD','#C4030A', '#B5081F', '#A60D33', 
+	'#961247', '#87175C', '#781C70', '#692185', '#592699', '#4A2BAD', '#3B30C2'];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MeetingPage');
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
+
+	ionViewDidLoad() {
+	console.log('ionViewDidLoad MeetingPage');
+	}
+
+	modifyColor(){
+		this.meetingColor = this.colors[Math.floor(Math.random() * 9 + 1)];
+	}
 
 }

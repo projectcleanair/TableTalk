@@ -12,7 +12,11 @@
 
 </ion-header>
 
+<ion-content (tap)="modifyColor();" id="meeting-background" [ngStyle]="{'background-color': meetingColor}" padding>
 
-<ion-content padding>
+<ion-fab>
+   <button ion-fab>Button</button>
+ </ion-fab>
+
 
 </ion-content>
