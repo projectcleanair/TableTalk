@@ -2,5 +2,7 @@
   "name": "TableTalk",
   "app_id": "8a1364d3",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }

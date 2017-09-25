@@ -61,6 +61,7 @@
         var userRef = database.ref("Users");
         var userId;
         var length;
+        var gID;
 
         
         /**
@@ -79,6 +80,7 @@
         */
         function createGroup() {
             var newId = groupRef.push().key;
+            gID = newId;
             writeGroupData(newId, 0, length, length);
             createSpeaker(newId);
             document.getElementById("groupIdDisplay").innerHTML = newId;
@@ -86,6 +88,7 @@
         function join() {
             var gid = document.getElementById("groupJoin").value;
             addToGroup(gid);
+            gId = gid;
         }
         function addToGroup(gId) {
             
@@ -109,17 +112,43 @@
             
             database.ref("Speaker/" + gId).set({ userId: userId, groupId: gId, startTime: 0, stopTime: 0 });
         }
+        function changeSpeaker() {
+            var timeTalked;
+            var oldSpeaker;
+            //Updating Speaker userId and pulling old Id for later use
+            var z = database.ref("Speaker/" + gID + "/userId");
+            z.transaction(function (cSpeak) {
+                oldSpeaker = cSpeak;
+                return userId;
+            });
 
-        function changeSpeaker(gId) {
-            
-            var x = database.ref("Speaker/" + gId + "/userId").set({ userId: userId, startTime: Date.now() });
+            var y = database.ref("Speaker/" + gID + "/startTime");
+            y.transaction(function (newTime) {
+                timeTalked = Date.now() - newTime;
+                return Date.now();
+            })
+            var x = database.ref("Users/" + oldSpeaker + "/talkTime");
+            x.transaction(function (currentVal) {
+                return currentVal + timeTalked;
+            })
         }
 
         function createUser() {
             var uid = document.getElementById("username").value;
             var name = document.getElementById("name").value;
             userId = uid;
-            database.ref("Users/" + uid).set({ name: name });
+            database.ref("Users/" + uid).set({ name: name, talkTime: 0 });
+        }
+
+        function signIn() {
+            var uid = document.getElementById("existing").value;
+            var ref = database.ref("Users");
+            ref.once("value").then(function (snapshot) {
+                var a = snapshot.exists();
+                var b = snapshot.child(uid).exists();
+                if (!b)
+                    console.log("No existing user");
+            });
         }
     </script>
 </body>
