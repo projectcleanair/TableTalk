@@ -86,7 +86,7 @@
         function join() {
             var gid = document.getElementById("groupJoin").value;
             addToGroup(gid);
-            gId = gid;
+            gID = gid;
         }
         function addToGroup(gId) {
             
@@ -113,11 +113,21 @@
         function changeSpeaker() {
             var timeTalked;
             var oldSpeaker;
+
             //Updating Speaker userId and pulling old Id for later use
-            var z = database.ref("Speaker/" + gID + "/userId");
-            z.transaction(function (cSpeak) {
-                oldSpeaker = cSpeak;
-                return userId;
+            
+
+            database.ref("Speaker/" + gID).once("value").then(function (snapshot) {
+                var a = snapshot.exists();
+                var b = snapshot.child("userId").exists();
+                if (b)
+                    oldSpeaker = b.val();
+                else
+                    oldSpeaker = userId;
+                var z = database.ref("Speaker/" + gID + "/userId");
+                z.transaction(function (cSpeak) {
+                    return userId;
+                });
             });
 
             var y = database.ref("Speaker/" + gID + "/startTime");
@@ -125,6 +135,7 @@
                 timeTalked = Date.now() - newTime;
                 return Date.now();
             })
+            console.log(oldSpeaker);
             var x = database.ref("Users/" + oldSpeaker + "/talkTime");
             x.transaction(function (currentVal) {
                 return currentVal + timeTalked;
