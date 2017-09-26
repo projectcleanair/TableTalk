@@ -6,12 +6,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { CreateGroupPage } from '../pages/create-group/create-group';
 import { JoinGroupPage } from '../pages/join-group/join-group';
+import { UserSignUpPage } from '../pages/user-sign-up/user-sign-up';
+import { MeetingPage } from '../pages/meeting/meeting';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = UserSignUpPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

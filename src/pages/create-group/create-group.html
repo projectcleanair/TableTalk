@@ -23,8 +23,10 @@
     <input oninput="updateNumber()" type="number" id="size"/> 
 
     <button id="create" onclick="createGroup()" ion-button round>Create</button>
-	<p> Use This Group ID </p>
+	  <p> Use This Group ID </p>
     <p id="groupIdDisplay"></p>
+
+    <button joinMeeting (click)='joinMeeting();' ion-button full>Join Meeting</button>
 
 
 </ion-content>

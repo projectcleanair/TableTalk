@@ -8,13 +8,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CreateGroupPage } from '../pages/create-group/create-group';
 import { JoinGroupPage } from '../pages/join-group/join-group';
+import { UserSignUpPage } from '../pages/user-sign-up/user-sign-up';
+import { MeetingPage } from '../pages/meeting/meeting';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     CreateGroupPage,
-    JoinGroupPage
+    JoinGroupPage,
+    UserSignUpPage,
+    MeetingPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { JoinGroupPage } from '../pages/join-group/join-group';
     MyApp,
     HomePage,
     CreateGroupPage,
-    JoinGroupPage
+    JoinGroupPage,
+    UserSignUpPage,
+    MeetingPage
   ],
   providers: [
     StatusBar,

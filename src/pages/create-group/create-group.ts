@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MeetingPage } from '../meeting/meeting'
 
 /**
  * Generated class for the CreateGroupPage page.
@@ -16,6 +17,10 @@ export class CreateGroupPage {
 
   constructor(public navCtrl: NavController) {
     }
+
+   joinMeeting() {
+  		this.navCtrl.push(MeetingPage);
+  }
 
   
 }

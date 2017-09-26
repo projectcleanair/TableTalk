@@ -147,9 +147,10 @@
                 var a = snapshot.exists();
                 var b = snapshot.child(uid).exists();
                 if (!b)
-                    console.log("No existing user");
-                else
+                    alert("No Existing User");
+                else {
                     userId = uid;
+                  }
             });
         }
     </script>
