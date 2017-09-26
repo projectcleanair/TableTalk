@@ -62,8 +62,6 @@
         var userId;
         var length;
         var gID;
-
-        
         /**
         Should write a new group to the firebase database
         */
@@ -131,6 +129,44 @@
             x.transaction(function (currentVal) {
                 return currentVal + timeTalked;
             })
+
+            modifyColor();
+        }
+
+        function modifyColor(){
+            console.log('userId is ' + userId);
+            var userTalkTime = 0;
+            var goalTalkTime = 1;
+            var colors = ['#4A2BAD','#C4030A', '#B5081F', '#A60D33', '#961247', '#87175C', '#781C70', '#692185', '#592699', '#4A2BAD', '#3B30C2'];
+            var timeRatio = 1;
+            var colorIndex = 0;
+
+            database.ref("Users/" + userId + "/talkTime").on('value', function(snapshot) {
+                userTalkTime = snapshot.val();
+            });
+
+            console.log('User Talk Time is ' + userTalkTime);
+            console.log('Goal Talk Time is ' + goalTalkTime);
+
+            if (userTalkTime == 0) {
+              document.getElementById("screen-color").style.background = "#3380FF";
+            }
+
+            else if (userTalkTime == 1) {
+              document.getElementById("screen-color").style.background = "#833EE7";
+            }
+
+            else if (userTalkTime == 2) {
+              document.getElementById("screen-color").style.background = "#ED3B56";
+            }
+
+        }
+
+        function wholeNumber(ratio) {
+            while (ratio < 0) {
+                ratio * 10;
+            }
+            return ratio;
         }
 
         function createUser() {
@@ -153,6 +189,7 @@
                   }
             });
         }
+
     </script>
 </body>
 </html>
