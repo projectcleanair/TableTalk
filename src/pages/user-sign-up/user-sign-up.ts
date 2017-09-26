@@ -9,7 +9,6 @@ import { HomePage } from '../home/home';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-user-sign-up',
   templateUrl: 'user-sign-up.html',
@@ -17,10 +16,6 @@ import { HomePage } from '../home/home';
 export class UserSignUpPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserSignUpPage');
   }
 
   enterHome() {

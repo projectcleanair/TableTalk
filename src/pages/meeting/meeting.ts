@@ -8,7 +8,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-meeting',
   templateUrl: 'meeting.html',
@@ -16,10 +15,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class MeetingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MeetingPage');
   }
 
 }
